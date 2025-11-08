@@ -1,0 +1,63 @@
+1
+zapadni
+1
+Ana
+Anic
+ana.anic@gmail.com
+1051
+3
+11
+2 bed
+99.99
+true
+12
+1 bed
+88.99
+false
+13
+3 bed
+149.99
+true
+2
+2
+ana
+frankic
+ana.fgrankic@gmail.com
+0992445161
+168923201345
+Luka
+Tolic
+luka.tolic@gmail.com
+0998765432367
+2368452681390541
+1
+03.02.2026
+05.02.2026
+5867345606875234
+Ana Frankic
+31.12.2030
+987
+3
+marko
+markic
+marko.markic@gmail.com
+0993723623
+2384608234
+ivana
+markic
+ivana.markic@gmail.com  
+0972356267
+2304793789
+lovro
+markic
+lovro.markic@gmail.com
+n/a
+5672437812
+3
+01.01.2027
+03.01.2027
+4468734580912334 
+Lovro Markic
+15.03.2028
+687
+1
