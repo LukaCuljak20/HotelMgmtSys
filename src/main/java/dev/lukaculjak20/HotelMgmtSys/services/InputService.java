@@ -8,6 +8,15 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Inputs all data for any number of hotels
+ *
+ *
+ * @author LukaCuljak20
+ * @version 1.3
+ * @since 1.0
+ */
+
 public class InputService {
     private final Scanner scanner = new Scanner(System.in);
     private final String dateFormat = "dd.MM.yyyy";
@@ -31,6 +40,11 @@ public class InputService {
 
         return new PaymentInfo(cardNumber, cardHolder, expiryDate, cvv);
     }
+
+    /**
+     * Prompts and takes all the information for any desired number of hotels
+     * @return Array of hotels with all the inputted information
+     */
 
     public Hotel[] hotelDataEntry() {
         try {

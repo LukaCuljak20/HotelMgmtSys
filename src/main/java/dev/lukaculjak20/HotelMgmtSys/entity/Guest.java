@@ -1,5 +1,13 @@
 package dev.lukaculjak20.HotelMgmtSys.entity;
 
+/**
+ * Contains information about a guest
+ *
+ * @author LukaCuljak20
+ * @version 1.2
+ * @since 1.0
+ */
+
 public class Guest extends Person {
     private String phoneNumber;
     private String idNumber;
@@ -11,9 +19,14 @@ public class Guest extends Person {
         this.idNumber = builder.idNumber;
     }
 
+
     public static GuestBuilder builder() {
         return new GuestBuilder();
     }
+
+    /**
+     * Makes additional input of a certain variable easier
+     */
     public static class GuestBuilder{
         private String name;
         private String surname;
@@ -37,11 +50,10 @@ public class Guest extends Person {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        public GuestBuilder idNumber(String idNumber){
+        public GuestBuilder idNumber(String idNumber) {
             this.idNumber = idNumber;
             return this;
         }
-        //metoda za unos svih podataka klase person odjednom
         public GuestBuilder personalInfo(String firstName, String lastName, String email) {
             this.name = firstName;
             this.surname = lastName;
@@ -60,27 +72,57 @@ public class Guest extends Person {
         }
     }
 
+    /**
+     * Getter for guest's phone number
+     *
+     * @return Guest's phone number
+     */
+
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    /**
+     * Setter fort guest's phone number
+     *
+     * @param phoneNumber Guest's phone number
+     */
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * Getter for guest's id number
+     * @return Guest's ID number
+     */
     public String getIdNumber() {
         return idNumber;
     }
 
+    /**
+     * Setter for guest's ID number
+     * @param idNumber Guest's ID number
+     */
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
+    /**
+     * Constructs Guest object
+     *
+     * @param firstName Guest's first name
+     * @param lastName Guest's last name
+     * @param email Guest's email
+     * @param phoneNumber Guest's phone number
+     * @param idNumber Guest's ID number
+     */
     public Guest(String firstName,String lastName,String email, String phoneNumber, String idNumber) {
         super(firstName, lastName, email);
         this.phoneNumber = phoneNumber;
         this.idNumber = idNumber;
     }
+
 
     @Override
     public String getFullName(){

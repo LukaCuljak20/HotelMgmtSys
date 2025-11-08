@@ -5,6 +5,16 @@ import dev.lukaculjak20.HotelMgmtSys.entity.*;
 
 import java.util.Scanner;
 
+/**
+ * Runs and connects all other programs in this project
+ *
+ * Runs input and implements all the services for searching
+ *
+ * @author LukaCuljak20
+ * @version 1.3
+ * @since 1.0
+ */
+
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     static void main(String[] args) {
@@ -41,6 +51,7 @@ public class Main {
                 comparisonString = scanner.nextLine();
             }
         }
+
         switch (input) {
             case "1" -> BookingService.byTotalPriceHigher(hotels[hotelNum],comparisonInt);
             case "2" -> BookingService.byTotalPriceLower(hotels[hotelNum],comparisonInt);
