@@ -1,9 +1,13 @@
 package dev.lukaculjak20.HotelMgmtSys.app;
 
+import ch.qos.logback.classic.Logger;
 import dev.lukaculjak20.HotelMgmtSys.services.*;
 import dev.lukaculjak20.HotelMgmtSys.entity.*;
+import org.slf4j.LoggerFactory;
+
 
 import java.util.Scanner;
+
 
 /**
  * Runs and connects all other programs in this project
@@ -16,9 +20,12 @@ import java.util.Scanner;
  */
 
 public class Main {
+    public static final Logger logger = (Logger) LoggerFactory.getLogger(Main.class);
     private static Scanner scanner = new Scanner(System.in);
     static void main(String[] args) {
     InputService inputService = new InputService();
+    logger.info("Main started...");
+
     Hotel[] hotels = inputService.hotelDataEntry();
 
         System.out.println("Choose hotel: ");
