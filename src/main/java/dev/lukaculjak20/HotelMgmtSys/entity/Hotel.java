@@ -1,5 +1,9 @@
 package dev.lukaculjak20.HotelMgmtSys.entity;
 
+import java.awt.print.Book;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Describes a hotel
  *
@@ -10,8 +14,8 @@ package dev.lukaculjak20.HotelMgmtSys.entity;
 
 public class Hotel {
     private String hotelName;
-    private Room[] listOfRooms;
-    private Booking[] listOfBookings;
+    private Map<Integer,Room> listOfRooms;
+    private List<Booking> listOfBookings;
 
     /**
      * Getter for hotel's name
@@ -23,10 +27,11 @@ public class Hotel {
 
     /**
      * Lists rooms in a hotel
-     * @return Array of rooms in a hotel
+     * @return List of rooms in a hotel
      */
 
-    public Room[] getListOfRooms() {
+
+    public Map<Integer, Room> getListOfRooms() {
         return listOfRooms;
     }
 
@@ -35,7 +40,7 @@ public class Hotel {
      * @return Array of bookings in a hotel
      */
 
-    public Booking[] getListOfBookings() {
+    public List<Booking> getListOfBookings() {
         return listOfBookings;
     }
 
@@ -50,19 +55,19 @@ public class Hotel {
 
     /**
      * Sets hotel rooms to an array given as a parameter
-     * @param listOfRooms Array of rooms to be set as hotel's rooms
+     * @param listOfRooms Map of rooms to be set as hotel's rooms
      */
 
-    public void setListOfRooms(Room[] listOfRooms) {
+    public void setListOfRooms(Map<Integer, Room> listOfRooms) {
         this.listOfRooms = listOfRooms;
     }
 
     /**
      * Sets hotel's bookings to array of bookings given in the parameter
-     * @param listOfBookings Array of booking to be set as hotel's bookings
+     * @param listOfBookings List of booking to be set as hotel's bookings
      */
 
-    public void setListOfBookings(Booking[] listOfBookings) {
+    public void setListOfBookings(List<Booking> listOfBookings) {
         this.listOfBookings = listOfBookings;
     }
 
@@ -73,7 +78,7 @@ public class Hotel {
      * @param listOfBookings List of bookings inside hotel
      */
 
-    public Hotel(String hotelName, Room[] listOfRooms, Booking[] listOfBookings) {
+    public Hotel(String hotelName, Map<Integer, Room> listOfRooms, List<Booking> listOfBookings) {
         this.hotelName = hotelName;
         this.listOfRooms = listOfRooms;
         this.listOfBookings = listOfBookings;

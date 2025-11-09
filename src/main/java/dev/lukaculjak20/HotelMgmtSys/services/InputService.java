@@ -6,14 +6,14 @@ import dev.lukaculjak20.HotelMgmtSys.exceptions.InvalidPaymentException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Inputs all data for any number of hotels
  *
  *
  * @author LukaCuljak20
- * @version 1.3
+ * @version 1.4
  * @since 1.0
  */
 
@@ -46,13 +46,13 @@ public class InputService {
      * @return Array of hotels with all the inputted information
      */
 
-    public Hotel[] hotelDataEntry() {
+    public List<Hotel> hotelDataEntry() {
         try {
             System.out.println("Enter number of hotels: ");
             Integer numberOfHotels = ValidationService.validatePositive(scanner.nextInt(), "Number of hotels");
             scanner.nextLine();
-            Hotel[] hotels = new Hotel[numberOfHotels];
-            for (int i = 0; i < hotels.length; i++) {
+            List<Hotel> hotels = new  ArrayList<>();
+            for (int i = 0; i < numberOfHotels; i++) {
 
                 System.out.println("Enter the " + (i + 1) + ". hotels name: ");
                 String hotelName = scanner.nextLine();
@@ -77,7 +77,7 @@ public class InputService {
                 System.out.println("Enter the number of rooms ");
                 Integer numberOfRooms = ValidationService.validatePositive(scanner.nextInt(), "Number of rooms");
                 scanner.nextLine();
-                Room[] rooms = new Room[numberOfRooms];
+                Map<Integer,Room> rooms = new HashMap<>();
                 for (int j = 0; j < numberOfRooms; j++) {
                     System.out.println("Enter the " + (j + 1) + ". room number: ");
                     Integer roomN = ValidationService.validateRoomNumber(scanner.nextInt());
@@ -90,17 +90,17 @@ public class InputService {
                     System.out.println("Enter the " + (j + 1) + ". room availability: ");
                     boolean availability = scanner.nextBoolean();
                     scanner.nextLine();
-                    rooms[j] = new Room(roomN, roomType, price, availability);
+                    rooms.put(roomN, new Room(roomType, price, availability));
                 }
                 System.out.println("Enter the number of bookings: ");
                 Integer numberOfBooking = scanner.nextInt();
                 scanner.nextLine();
-                Booking[] bookings = new Booking[numberOfBooking];
+                List<Booking> bookings = new ArrayList<>();
                 for (int j = 0; j < numberOfBooking; j++) {
                     System.out.println("Enter the " + (j + 1) + ". booking number of guests: ");
                     Integer numberOfGuests = scanner.nextInt();
                     scanner.nextLine();
-                    Guest[] guests = new Guest[numberOfGuests];
+                    Set<Guest> guests = new HashSet<>();
                     for (int k = 0; k < numberOfGuests; k++) {
                         System.out.println("Enter the " + (k + 1) + ". guest name: ");
                         String name = scanner.nextLine();
@@ -112,24 +112,26 @@ public class InputService {
                         String phoneNumber = scanner.nextLine();
                         System.out.println("Enter the " + (k + 1) + ". guest id number: ");
                         String guestId = scanner.nextLine();
-                        guests[k] = new Guest(name, surname, email, phoneNumber, guestId);
+                        guests.add(new Guest(name, surname, email, phoneNumber, guestId));
                     }
                     System.out.println("Enter the " + (i + 1) + ". booking room: ");
-                    for (int k = 0; k < numberOfRooms; k++) {
-                        System.out.println((k + 1) + ". Room number: " + rooms[k].getRoomNumber() + " Room type: " + rooms[k].getType() + " Price: " + rooms[k].getPrice());
+                    for(Integer roomNumber : rooms.keySet()) {
+                        System.out.println("Room number: " + roomNumber + " Type: " + rooms.get(roomNumber).getType()+ " Price: " + rooms.get(roomNumber).getPrice());
                     }
                     Integer rNum = scanner.nextInt();
                     scanner.nextLine();
-                    rNum--;
                     System.out.println("Enter the " + (i + 1) + ". booking check in date(dd.mm.yyyy): ");
                     LocalDate checkInDate = ValidationService.validateDate(scanner.nextLine(), dateFormat);
                     System.out.println("Enter the " + (i + 1) + ". booking check out date(dd.MM.yyyy): ");
                     LocalDate checkOutDate = ValidationService.validateDate(scanner.nextLine(), dateFormat);
 
                     PaymentInfo paymentInfo = readPaymentInfo();
-                    bookings[j] = new Booking(guests, rooms[rNum], checkInDate, checkOutDate, paymentInfo);
+                    bookings.add(new Booking(guests, rooms.get(rNum), checkInDate, checkOutDate, paymentInfo));
+//                    for(Booking booking : bookings) {
+//                        booking.setTotalPrice(booking.calculateTotalPrice());
+//                    }
                 }
-                hotels[i] = new Hotel(hotelName, rooms, bookings);
+                hotels.add(new Hotel(hotelName, rooms, bookings));
 
             }
             return hotels;

@@ -1,7 +1,6 @@
 package dev.lukaculjak20.HotelMgmtSys.entity;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 /**
@@ -14,18 +13,10 @@ import java.time.LocalDate;
  * @since 1.0
  */
 public class Room implements Reservable {
-    private Integer roomNumber;
     private String type;
     private BigDecimal price;
     private boolean availability = true;
 
-    /**
-     * Gets room's number
-     * @return Rooms's Number
-     */
-    public Integer getRoomNumber() {
-        return roomNumber;
-    }
 
     /**
      * Gets room-s type
@@ -51,13 +42,6 @@ public class Room implements Reservable {
         return availability;
     }
 
-    /**
-     * Sets room number to parameter value
-     * @param roomNumber Desired room number
-     */
-    public void setRoomNumber(Integer roomNumber) {
-        this.roomNumber = roomNumber;
-    }
 
     /**
      * Sets room type to parameter value
@@ -77,13 +61,12 @@ public class Room implements Reservable {
 
     /**
      * Constructs room object
-     * @param roomNumber Room number
-     * @param type Room type
-     * @param price Room price for 1 night
+     *
+     * @param type         Room type
+     * @param price        Room price for 1 night
      * @param availability Room availability
      */
-    public Room(Integer roomNumber, String type, BigDecimal price, boolean availability) {
-        this.roomNumber = roomNumber;
+    public Room(String type, BigDecimal price, boolean availability) {
         this.type = type;
         this.price = price;
         this.availability = availability;

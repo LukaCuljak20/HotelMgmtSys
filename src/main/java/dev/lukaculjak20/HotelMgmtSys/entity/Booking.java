@@ -4,6 +4,8 @@ package dev.lukaculjak20.HotelMgmtSys.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Set;
 
 /**
  *  Contains information about Booking
@@ -16,29 +18,28 @@ import java.time.temporal.ChronoUnit;
  */
 
 public final class Booking implements Schedulable {
-    private Guest[] guests;
+    private Set<Guest> guests;
     private Room room;
     private LocalDate checkIn;
     private LocalDate checkOut;
     private BigDecimal totalPrice;
     private PaymentInfo paymentInfo;
 
-    public Booking(Guest[] guests, Room room, LocalDate checkIn, LocalDate checkOut, PaymentInfo paymentInfo) {
+    public Booking(Set<Guest> guests, Room room, LocalDate checkIn, LocalDate checkOut, PaymentInfo paymentInfo) {
         this.guests = guests;
         this.room = room;
-        room.makeReservation();
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.paymentInfo = paymentInfo;
         this.totalPrice = calculateTotalPrice();
     }
-
 
     /**
      * Gets array of guests
      *
-     * @return array of guests
+     * @return Set of guests
      */
-    public Guest[] getGuest() {
+    public Set<Guest> getGuests() {
         return guests;
     }
 
@@ -82,9 +83,10 @@ public final class Booking implements Schedulable {
      *
      * @param guests value to be assigned to guests inside of this object
      */
-    public void setGuests(Guest[] guests) {
+    public void setGuests(Set<Guest> guests) {
         this.guests = guests;
     }
+
     /**
      * Sets object room value to parameter value
      *
@@ -111,6 +113,13 @@ public final class Booking implements Schedulable {
     }
 
 
+    /**
+     * Sets total price
+     * @param totalPrice Total price of a booking calculated in calculateTotalPrice()
+     */
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     @Override
     public LocalDate getStartDate() {
